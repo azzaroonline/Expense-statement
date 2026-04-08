@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>تسجيل المصاريف</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for Modern Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+  <div class="app-container">
+    
+    <!-- Top Bar -->
+    <header class="app-header">
+      <div class="header-content">
+        <h1>كشف المصاريف</h1>
+        <div id="connection-status" class="status-indicator online">
+          <i class="fas fa-wifi"></i> <span id="status-text">متصل</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Expense Form -->
+      <form id="expense-form" class="expense-card">
+        
+        <div class="input-group">
+          <label for="amount"><i class="fas fa-wallet"></i> المبلغ</label>
+          <div class="input-wrapper amount-wrapper">
+            <input type="number" id="amount" inputmode="decimal" required placeholder="مثال: 20000" autocomplete="off">
+            <span class="currency-label">ل.س</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="note"><i class="fas fa-pen"></i> التفاصيل / الملاحظة</label>
+          <div class="input-wrapper">
+            <input type="text" id="note" required placeholder="مثال: ثمن شحن طلبات" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Date Preview (Readonly, just to show user that we get it automatically) -->
+        <div class="input-group">
+          <label><i class="fas fa-clock"></i> التاريخ والوقت (تلقائي)</label>
+          <div class="date-preview" id="current-date-time">يتم التحديث...</div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="primary-btn">
+          <span class="btn-text">تسجيل المصروف</span>
+          <i class="fas fa-paper-plane"></i>
+          <div class="loader" id="submit-loader"></div>
+        </button>
+
+      </form>
+
+      <!-- Offline Queue Indicator -->
+      <div id="queue-container" class="queue-card hidden">
+        <div class="queue-header">
+          <h3><i class="fas fa-cloud-upload-alt"></i> قيد الانتظار (<span id="queue-count">0</span>)</h3>
+          <button id="sync-btn" class="sync-btn"><i class="fas fa-sync-alt"></i> مزامنة</button>
+        </div>
+        <p class="queue-desc">المصاريف المحفوظة مؤقتاً سيتم رفعها عند عودة الإنترنت.</p>
+        <ul id="queue-list" class="queue-list"></ul>
+      </div>
+      
+    </main>
+
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="notification-toast" class="toast">
+    <div class="toast-icon"></div>
+    <div class="toast-message"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
